@@ -1,0 +1,89 @@
+/* The agent's computer: the terminal (terminal.js), its files and volumes (files.js), and attachments in a
+   conversation (attach.js). Tokens from app.css. */
+
+/* terminal */
+.terminal-view .where { margin: 4px 0 10px; }
+.terminal-view .row.between { gap: 8px; flex-wrap: nowrap; }
+.term-bar { gap: 6px; margin-bottom: 8px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.term-bar::-webkit-scrollbar { display: none; }
+.term-tabs { display: flex; gap: 6px; }
+.term-tab { display: inline-flex; flex: none; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: var(--panel); }
+.term-tab button { border: 0; border-radius: 0; min-height: 36px; padding: 4px 10px; font-size: 14px; background: none; }
+.term-tab button.tab.on { font-weight: 600; background: var(--chip); }
+.term-tab button.tab.ended { color: var(--muted); text-decoration: line-through; }
+.term-tab button.tab-x { color: var(--muted); padding: 4px 10px 4px 4px; }
+.term-screens { position: relative; }
+.term-screen { height: calc(100dvh - 330px); min-height: 260px; padding: 6px; border-radius: 12px;
+  border: 1px solid var(--line); background: #ffffff; overflow: hidden; }
+.term-screen .xterm { height: 100%; }
+.term-status { min-height: 21px; margin-top: 6px; }
+.term-keys { display: none; gap: 6px; margin-top: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.term-keys::-webkit-scrollbar { display: none; }
+.term-keys button { flex: none; min-width: 44px; min-height: 40px; padding: 4px 10px; font-family: ui-monospace,
+  SFMono-Regular, Menlo, monospace; }
+.term-keys button.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+@media (pointer: coarse), (max-width: 600px) { .term-keys { display: flex; } }
+@media (prefers-color-scheme: dark) { .term-screen { background: #0b0d11; } }
+
+/* files */
+.files-view h1 { margin-bottom: 10px; }
+.files-roots { margin-bottom: 10px; }
+.files-roots a.button.on { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+nav.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; margin: 0 0 10px; font-size: 15px;
+  overflow-wrap: anywhere; }
+nav.crumbs a { padding: 2px 0; }
+nav.crumbs a:last-child { color: var(--ink); font-weight: 600; }
+nav.crumbs .sep { color: var(--muted); }
+.files-tools { gap: 8px; margin-bottom: 10px; }
+.files-new { gap: 8px; flex-wrap: nowrap; margin-bottom: 10px; }
+.files-new input { flex: 1; min-width: 0; }
+.files-view .confirm { margin-bottom: 10px; }
+.files-view .confirm .row { flex-wrap: wrap; }
+.files-list .fentry { color: inherit; flex-wrap: nowrap; gap: 10px; align-items: center; }
+.files-list .fentry.other { color: var(--muted); }
+.files-list .fentry .name { display: block; font-weight: 500; }
+.files-list .fentry .sub { display: block; font-size: 13px; }
+.ftype { flex: none; width: 18px; height: 14px; border-radius: 3px; border: 1.5px solid var(--muted); position: relative; }
+.ftype.dir { border-color: var(--accent); background: var(--accent-soft); border-top-left-radius: 0; }
+.ftype.dir::before { content: ""; position: absolute; left: -1.5px; top: -5px; width: 8px; height: 4px;
+  border: 1.5px solid var(--accent); border-bottom: 0; border-radius: 2px 2px 0 0; background: var(--accent-soft); }
+.ftype.file { width: 13px; height: 17px; margin: 0 2.5px; }    /* as wide as a folder's, so names line up */
+.ftype.other { border-style: dashed; }
+.files-preview { overflow: hidden; }
+.files-preview pre.files-text { margin: 0; max-height: 65vh; }
+.files-preview img.files-img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 8px; }
+.card.volumes h2 { margin-top: 0; }
+.card.volumes .rows { margin-top: 10px; }
+.card.volumes .volumes-acts { margin-top: 12px; gap: 8px; }
+.card.volumes .confirm { margin-top: 10px; }
+.sub.ok { color: var(--accent); }
+.files-view > .card.volumes { margin-top: 24px; }
+
+/* attachments: the composer */
+.composer .attach { display: contents; }
+.composer button.attach-btn { flex: none; width: 44px; padding: 0; font-size: 22px; line-height: 1; }
+.attach-chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; }
+.attach-chip { display: flex; flex: none; align-items: center; gap: 8px; max-width: 240px; padding: 4px 4px 4px 8px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--panel); font-size: 14px; }
+.attach-chip.failed { border-color: var(--bad); }
+.attach-chip.failed .sub { color: var(--bad); }
+.attach-chip img { width: 32px; height: 32px; object-fit: cover; border-radius: 6px; flex: none; }
+.attach-chip .grow { min-width: 0; }
+.attach-chip .name, .attach-chip .sub { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.attach-chip .sub { font-size: 12px; }
+.attach-chip button.x { flex: none; min-height: 32px; width: 32px; padding: 0; border: 0; background: none;
+  color: var(--muted); font-size: 18px; }
+.session-view.dropping .log { outline: 2px dashed var(--accent); outline-offset: 4px; border-radius: 12px; }
+
+/* attachments: the log */
+.blocks { display: flex; max-width: 92%; }
+.blocks.user { align-self: flex-end; justify-content: flex-end; }
+.blocks.agent { align-self: flex-start; }
+.att-image { display: block; }
+.att-image img { display: block; max-width: min(320px, 100%); max-height: 320px; height: auto; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--panel); }
+.att-file { color: inherit; gap: 10px; flex-wrap: nowrap; padding: 8px 12px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--panel); font-size: 14px; max-width: 100%; }
+.att-file .name, .att-file .sub { display: block; overflow-wrap: anywhere; }
+.att-file .sub { font-size: 12px; }

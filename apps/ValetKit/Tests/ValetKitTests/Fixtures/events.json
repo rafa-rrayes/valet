@@ -1,0 +1,322 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "685944c9b4af4348bd6bd384587eb56e",
+      "ts": 1793583125.2006679,
+      "kind": "user_message",
+      "data": {
+        "content": {
+          "type": "text",
+          "text": "hello"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "685944c9b4af4348bd6bd384587eb56e",
+      "ts": 1793583125.202983,
+      "kind": "agent_thought",
+      "data": {
+        "content": {
+          "text": "thinking",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "685944c9b4af4348bd6bd384587eb56e",
+      "ts": 1793583125.203279,
+      "kind": "agent_message",
+      "data": {
+        "content": {
+          "text": "echo: ",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "685944c9b4af4348bd6bd384587eb56e",
+      "ts": 1793583125.20343,
+      "kind": "agent_message",
+      "data": {
+        "content": {
+          "text": "hello",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "685944c9b4af4348bd6bd384587eb56e",
+      "ts": 1793583125.203849,
+      "kind": "turn_end",
+      "data": {
+        "stopReason": "end_turn",
+        "error": null
+      }
+    },
+    {
+      "id": 6,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.40909,
+      "kind": "user_message",
+      "data": {
+        "content": {
+          "type": "text",
+          "text": "permission"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.411118,
+      "kind": "tool_call",
+      "data": {
+        "toolCallId": "call-77df1057",
+        "title": "Write hello.txt",
+        "kind": "edit",
+        "status": "pending",
+        "rawInput": {
+          "path": "hello.txt",
+          "content": "hello"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.411689,
+      "kind": "permission_request",
+      "data": {
+        "requestId": "209d303df80247f4b67ee60a785ff2f1",
+        "toolCall": {
+          "toolCallId": "call-77df1057",
+          "kind": "edit",
+          "status": "pending",
+          "title": "Write hello.txt"
+        },
+        "options": [
+          {
+            "optionId": "allow",
+            "name": "Allow",
+            "kind": "allow_once"
+          },
+          {
+            "optionId": "allow-always",
+            "name": "Always allow",
+            "kind": "allow_always"
+          },
+          {
+            "optionId": "reject",
+            "name": "Reject",
+            "kind": "reject_once"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.616126,
+      "kind": "permission_answer",
+      "data": {
+        "requestId": "209d303df80247f4b67ee60a785ff2f1",
+        "outcome": {
+          "outcome": "selected",
+          "optionId": "allow"
+        },
+        "status": "answered"
+      }
+    },
+    {
+      "id": 10,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.6175392,
+      "kind": "tool_call_update",
+      "data": {
+        "toolCallId": "call-77df1057",
+        "status": "completed"
+      }
+    },
+    {
+      "id": 11,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.6177752,
+      "kind": "agent_message",
+      "data": {
+        "content": {
+          "text": "allowed",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "cba211a125464d20992459ce7062a767",
+      "ts": 1793583125.6181161,
+      "kind": "turn_end",
+      "data": {
+        "stopReason": "end_turn",
+        "error": null
+      }
+    },
+    {
+      "id": 13,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "23633680e9e442e49cc2e6b73a63071a",
+      "ts": 1793583125.620994,
+      "kind": "user_message",
+      "data": {
+        "content": {
+          "type": "text",
+          "text": "tool"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "23633680e9e442e49cc2e6b73a63071a",
+      "ts": 1793583125.6226392,
+      "kind": "tool_call",
+      "data": {
+        "toolCallId": "call-4d3410dc",
+        "title": "Run ls",
+        "kind": "execute",
+        "status": "in_progress",
+        "rawInput": {
+          "command": "ls"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "23633680e9e442e49cc2e6b73a63071a",
+      "ts": 1793583125.622933,
+      "kind": "tool_call_update",
+      "data": {
+        "toolCallId": "call-4d3410dc",
+        "content": [
+          {
+            "content": {
+              "text": "output",
+              "type": "text"
+            },
+            "type": "content"
+          }
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "23633680e9e442e49cc2e6b73a63071a",
+      "ts": 1793583125.623147,
+      "kind": "tool_call_update",
+      "data": {
+        "toolCallId": "call-4d3410dc",
+        "status": "completed"
+      }
+    },
+    {
+      "id": 17,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "23633680e9e442e49cc2e6b73a63071a",
+      "ts": 1793583125.623476,
+      "kind": "agent_message",
+      "data": {
+        "content": {
+          "text": "done",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "23633680e9e442e49cc2e6b73a63071a",
+      "ts": 1793583125.623712,
+      "kind": "turn_end",
+      "data": {
+        "stopReason": "end_turn",
+        "error": null
+      }
+    },
+    {
+      "id": 19,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "b4de8a9162394278804213d99adc2e6a",
+      "ts": 1793583125.8299909,
+      "kind": "user_message",
+      "data": {
+        "content": {
+          "type": "text",
+          "text": "slow"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "b4de8a9162394278804213d99adc2e6a",
+      "ts": 1793583125.832132,
+      "kind": "agent_message",
+      "data": {
+        "content": {
+          "text": "working",
+          "type": "text"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "agent": "sample",
+      "session_id": "fake-a7d1d28b",
+      "turn_id": "b4de8a9162394278804213d99adc2e6a",
+      "ts": 1793583126.654918,
+      "kind": "turn_end",
+      "data": {
+        "stopReason": "cancelled",
+        "error": null
+      }
+    }
+  ],
+  "more": false
+}

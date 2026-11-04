@@ -1,0 +1,69 @@
+{
+  "name": "sample",
+  "display_name": "Sample",
+  "emoji": "🧪",
+  "harness": "claude",
+  "model": null,
+  "level": "host",
+  "definition_error": null,
+  "runner": "mac",
+  "connected": true,
+  "desired": "running",
+  "state": "running",
+  "status": "idle",
+  "error": null,
+  "capabilities": {
+    "loadSession": true,
+    "promptCapabilities": {
+      "image": false,
+      "audio": false,
+      "embeddedContext": false
+    },
+    "mcpCapabilities": {
+      "http": true,
+      "sse": false,
+      "acp": false
+    },
+    "sessionCapabilities": {},
+    "auth": {}
+  },
+  "permissions": "ask",
+  "restart_needed": false,
+  "missing_secrets": [],
+  "files": {
+    "agent.yaml": "name: sample\ndisplay_name: Sample\nemoji: \"🧪\"\nharness: claude\ncomputer:\n  level: host\npermissions: ask\n",
+    "persona.md": "You are sample, one of Alice's agents. Be brief and direct.\n"
+  },
+  "definition": {
+    "name": "sample",
+    "display_name": "Sample",
+    "emoji": "🧪",
+    "harness": "claude",
+    "model": null,
+    "provider": null,
+    "runner": null,
+    "computer": {
+      "level": "host",
+      "image": null,
+      "network": "open",
+      "allowlist": [],
+      "mounts": [],
+      "user": null
+    },
+    "tools": {
+      "mcp": [],
+      "skills": []
+    },
+    "browser": {
+      "profiles": []
+    },
+    "secrets": [],
+    "permissions": "ask",
+    "directives": [
+      "persona.md"
+    ],
+    "memory": false,
+    "triggers": []
+  },
+  "commit": "adbf512e039a613d1f52de0548b214e036496111"
+}

@@ -1,0 +1,13 @@
+# The build context of docker/control/Dockerfile (the repo's root): only what the image needs. Never data/: it holds
+# the database, the master key and Chrome profiles.
+.git
+.venv
+.pytest_cache
+data
+apps
+tests
+tasks
+docs
+**/__pycache__
+**/*.pyc
+docker/agent-base

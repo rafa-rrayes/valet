@@ -1,0 +1,32 @@
+/* The shared space: an agent's Shared section, #/shared and #/shared/<id> (shared.js). Tokens from app.css. */
+.shared > .row.between { gap: 8px; }
+.shared > .intro, .shared-page > .intro { margin: 6px 0 12px; }
+a.shared-badge { display: block; width: fit-content; margin-top: 4px; font-size: 14px; color: var(--warn); }
+a.shared-badge::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--warn); margin-right: 6px; vertical-align: 1px; }
+.shared-tools { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.shared-tools .row { flex-wrap: nowrap; gap: 8px; }
+.shared-tools select { flex: 1; min-width: 0; }
+.shared-new .field:first-child { margin-top: 0; }
+.shared-new textarea, .shared-new input + input { margin-top: 8px; }
+.shared-new .row { margin-top: 10px; gap: 8px; }
+.shared-list.rows > * { padding: 12px 0; }
+a.shared-item { color: inherit; flex-wrap: nowrap; align-items: flex-start; gap: 10px; }
+a.shared-item .name, a.shared-item .desc { display: block; }
+a.shared-item .name { overflow-wrap: anywhere; }
+a.shared-item .desc { font-size: 14px; margin-top: 2px; overflow-wrap: anywhere; }
+a.shared-item .by { font-size: 13px; }
+a.shared-item .chev { color: var(--muted); font-size: 22px; line-height: 1; align-self: center; }
+a.shared-item .kind { display: inline-block; font-size: 12px; font-weight: 600; color: var(--muted); background: var(--chip);
+  border-radius: 6px; padding: 0 6px; margin-right: 6px; vertical-align: 1px; }
+.dot { flex: none; width: 9px; height: 9px; border-radius: 50%; margin-top: 8px; background: transparent; }
+.dot.on { background: var(--warn); }
+h1.shared-title { overflow-wrap: anywhere; }
+.shared-view .shared-title + .sub { margin: 4px 0 14px; overflow-wrap: anywhere; }
+.shared-preview { overflow: hidden; }
+.shared-preview img.shared-img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 8px; }
+.shared-preview pre.shared-text { margin: 0; max-height: 480px; }
+.shared-view .row { gap: 8px; }
+.shared-view .shared-actions { margin-top: 14px; }
+.shared-view .card + .row { margin-top: 4px; }
+.shared-view .card .row.end { margin-top: 10px; }

@@ -1,0 +1,51 @@
+/* Always-on (triggers.js, and the parts of app.js's screens it fills): source lines, Retry, the prompt queue,
+   Settings › Triggers, trigger runs, valet.owner's messages and questions. The palette is app.css's tokens. */
+
+/* the conversation */
+.from { align-self: flex-end; font-size: 12px; color: var(--muted); margin: 6px 4px -4px; overflow-wrap: anywhere; }
+.from.schedule, .from.wakeup, .from.webhook, .from.agent, .from.answer { color: var(--accent); }
+.retry { align-self: center; display: flex; flex-direction: column; align-items: center; }
+.retry .err { margin-top: 4px; }
+.badge.main { background: var(--accent-soft); color: var(--accent); font-size: 12px; }
+.queue { display: flex; flex-direction: column; gap: 6px; padding: 0 0 8px; }
+.queue .queued { background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; padding: 6px 10px;
+  font-size: 14px; flex-wrap: nowrap; }
+.queue .queued span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.queued-note { margin: 0 0 8px; }
+
+/* the agents list and page */
+.always-on { margin-top: 4px; overflow-wrap: anywhere; }
+.always-on .activity { color: var(--ink); }
+.trigger-list .trow + .trow { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.trigger-list strong { overflow-wrap: anywhere; }
+.runs .run { padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.runs .run:first-of-type { margin-top: 6px; }
+.runs .run .row { flex-wrap: nowrap; }
+.badge.run-ran { background: var(--accent-soft); color: var(--accent); }
+.badge.run-queued, .badge.run-sending { background: var(--chip); color: var(--ink); }
+.badge.run-missed { background: var(--warn-soft); color: var(--warn); }
+.badge.run-failed { background: var(--bad-soft); color: var(--bad); }
+
+/* Settings › Triggers */
+.triggers .trigger { border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-top: 10px; }
+.triggers .trigger .field { margin-top: 10px; }
+.triggers .trigger label { display: block; font-size: 13px; color: var(--muted); margin: 6px 0 4px; }
+.triggers .describe strong { color: var(--ink); font-weight: 600; }
+.triggers .presets { margin-top: 8px; }
+.triggers .hook { margin-top: 8px; }
+.triggers .hook-line { flex-wrap: nowrap; gap: 6px; }
+.triggers .hook-line .mono { overflow-wrap: anywhere; word-break: break-all; min-width: 0; padding: 6px 8px;
+  border-radius: 8px; background: var(--chip); }
+.triggers .add-trigger { margin-top: 12px; }
+@media (max-width: 480px) {
+  .triggers .hook-line { flex-wrap: wrap; }
+  .triggers .hook-line .mono { flex-basis: 100%; }
+}
+
+/* valet.owner in the inbox and conversations */
+.owner-item.message { background: var(--panel); border-color: var(--accent); }
+.owner-item.closed { border-color: var(--line); }
+.owner-item .owner-text { margin-top: 6px; }
+.owner-item .answer-words { margin-top: 10px; flex-wrap: nowrap; align-items: flex-end; }
+.owner-item .answer-words textarea { flex: 1; resize: none; min-height: 42px; }
+.owner-item .answer-words button { flex: none; }

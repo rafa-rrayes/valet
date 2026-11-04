@@ -1,0 +1,22 @@
+/* An agent's memory: Settings › Memory, and a memory file's screen (memory.js). Tokens from app.css. */
+.memory .layer-row label.check { align-items: flex-start; min-height: 0; }
+.memory .layer-row .name, .memory .layer-row .desc { display: block; }
+.memory .layer-row .desc { font-size: 14px; margin-top: 2px; overflow-wrap: anywhere; }
+.memory .layer-row + .note { margin-top: 10px; }
+.memory h3.mem-head { font-size: 15px; margin: 16px 0 6px; }
+a.memfile { color: inherit; flex-wrap: nowrap; }
+a.memfile .name, a.memfile .desc { display: block; }
+a.memfile .desc { font-size: 14px; margin-top: 2px; overflow-wrap: anywhere; }
+a.memfile .chev { color: var(--muted); font-size: 22px; line-height: 1; }
+.memory > button.new-mem { margin-top: 12px; }
+.newmem { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px 12px; margin-top: 12px; }
+.newmem .row { margin-top: 10px; gap: 8px; }
+.memory-view .mem-md { overflow-wrap: anywhere; }
+.memory-view textarea.mem-text { min-height: 260px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px; line-height: 1.45; resize: vertical; }
+.memory-view .mem-actions { margin-top: 10px; gap: 8px; }
+.memory-view .card .mem-actions { margin-top: 12px; }
+.memory-view .mem-history { margin-top: 18px; }
+.memory-view .mem-older { margin-top: 8px; }
+.memory-view pre.mem-old-text { max-height: 320px; }
+.memory-view .mem-older .row { margin-top: 8px; gap: 8px; }

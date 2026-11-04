@@ -1,0 +1,38 @@
+[
+  {
+    "id": "209d303df80247f4b67ee60a785ff2f1",
+    "kind": "permission",
+    "agent": "sample",
+    "session_id": "fake-a7d1d28b",
+    "turn_id": "cba211a125464d20992459ce7062a767",
+    "status": "pending",
+    "title": "Write hello.txt",
+    "tool_call": {
+      "toolCallId": "call-77df1057",
+      "kind": "edit",
+      "status": "pending",
+      "title": "Write hello.txt"
+    },
+    "options": [
+      {
+        "optionId": "allow",
+        "name": "Allow",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "allow-always",
+        "name": "Always allow",
+        "kind": "allow_always"
+      },
+      {
+        "optionId": "reject",
+        "name": "Reject",
+        "kind": "reject_once"
+      }
+    ],
+    "tool": null,
+    "answer": null,
+    "created_at": 1793583125.411492,
+    "answered_at": null
+  }
+]

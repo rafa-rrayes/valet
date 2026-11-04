@@ -1,0 +1,15 @@
+xterm.js for the agent's terminal (terminal.js), vendored as published on npm: no CDN, no build step.
+
+@xterm/xterm 6.0.0          MIT, LICENSE
+  https://registry.npmjs.org/@xterm/xterm/-/xterm-6.0.0.tgz
+  integrity sha512-TQwDdQGtwwDt+2cgKDLn0IRaSxYu1tSUjgKarSDkUM0ZNiSRXFpjxEsvc/Zgc5kq5omJ+V0a8/kIM2WD3sMOYg==
+  xterm.js   (lib/xterm.js)   sha256 14903579ff54664cd72f8e8699e6961a6272c21863ec1c3b118cdc8af5d4a972
+  xterm.css  (css/xterm.css)  sha256 854a7c0fb70e8b1a083c16797ab827299fb18744f5ad34f227b48337e33293c6
+
+@xterm/addon-fit 0.11.0     MIT, LICENSE-addon-fit
+  https://registry.npmjs.org/@xterm/addon-fit/-/addon-fit-0.11.0.tgz
+  integrity sha512-jYcgT6xtVYhnhgxh3QgYDnnNMYTcf8ElbxxFzX0IZo+vabQqSPAjC3c1wJrKB5E19VwQei89QCiZZP86DCPF7g==
+  addon-fit.js (lib/addon-fit.js) sha256 ba3ea256ce0620a0992a197d6c9baea64823fc93d8da07a9e366ca9943c18527
+
+To update: download the new tarballs, check their integrity against `npm view @xterm/xterm@<v> dist.integrity`,
+copy the same files over, and update this file. The source maps aren't vendored (the files' last line names them).

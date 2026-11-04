@@ -1,0 +1,14 @@
+__pycache__/
+.venv/
+*.pyc
+.pytest_cache/
+data/
+.env
+
+# Local dev notes and plans, kept on disk but not published
+tasks/
+.claude/
+.DS_Store
+.env.*
+*.p8
+.ruff_cache/

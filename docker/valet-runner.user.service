@@ -1,0 +1,21 @@
+# Valet runner as a user service: no sudo needed (enable lingering, `loginctl enable-linger`, to run without a login).
+#
+#   mkdir -p ~/.config/systemd/user && cp docker/valet-runner.user.service ~/.config/systemd/user/valet-runner.service
+#   systemctl --user daemon-reload && systemctl --user enable --now valet-runner
+# Expects this repo at ~/valet and the settings in ~/.config/valet/runner.env (docker/runner.env.example).
+[Unit]
+Description=Valet runner
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%h/valet
+EnvironmentFile=%h/.config/valet/runner.env
+Environment=PATH=%h/.local/bin:%h/.local/lib/node-v24.21.0-linux-x64/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/.local/bin/uv run --frozen --no-dev valet-runner
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=default.target

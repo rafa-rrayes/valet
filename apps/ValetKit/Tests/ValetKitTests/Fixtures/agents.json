@@ -1,0 +1,75 @@
+[
+  {
+    "name": "helper",
+    "display_name": "Helper",
+    "emoji": "🧭",
+    "harness": "claude",
+    "model": null,
+    "level": "host",
+    "definition_error": null,
+    "runner": null,
+    "connected": false,
+    "desired": "stopped",
+    "state": "stopped",
+    "status": "stopped",
+    "error": null,
+    "capabilities": null,
+    "permissions": "ask",
+    "restart_needed": false,
+    "missing_secrets": []
+  },
+  {
+    "name": "keeper",
+    "display_name": null,
+    "emoji": null,
+    "harness": "claude",
+    "model": null,
+    "level": "host",
+    "definition_error": null,
+    "runner": null,
+    "connected": false,
+    "desired": "stopped",
+    "state": "stopped",
+    "status": "stopped",
+    "error": null,
+    "capabilities": null,
+    "permissions": "ask",
+    "restart_needed": false,
+    "missing_secrets": [
+      "KEEPER_TOKEN"
+    ]
+  },
+  {
+    "name": "sample",
+    "display_name": "Sample",
+    "emoji": "🧪",
+    "harness": "claude",
+    "model": null,
+    "level": "host",
+    "definition_error": null,
+    "runner": "mac",
+    "connected": true,
+    "desired": "running",
+    "state": "running",
+    "status": "idle",
+    "error": null,
+    "capabilities": {
+      "loadSession": true,
+      "promptCapabilities": {
+        "image": false,
+        "audio": false,
+        "embeddedContext": false
+      },
+      "mcpCapabilities": {
+        "http": true,
+        "sse": false,
+        "acp": false
+      },
+      "sessionCapabilities": {},
+      "auth": {}
+    },
+    "permissions": "ask",
+    "restart_needed": false,
+    "missing_secrets": []
+  }
+]

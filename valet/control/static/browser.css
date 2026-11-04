@@ -1,0 +1,143 @@
+/* The browser and the vault (browser.js, vault.js). app.css's tokens, so dark mode only swaps the palette. */
+
+/* A fourth tab (Browser) in the header: tighter tabs on a phone, so they fit at 390px. */
+@media (max-width: 480px) {
+  .bar { gap: 8px; }
+  nav { gap: 0; min-width: 0; }
+  nav a { padding: 8px 7px; }
+}
+
+/* #/browser */
+.browser .card.profile .title { font-size: 17px; overflow-wrap: anywhere; }
+.browser .card.profile .note-line, .browser .card.profile .meta { margin-top: 4px; overflow-wrap: anywhere; }
+.browser .acts, .browser-profile .acts { gap: 8px; margin-top: 10px; }
+.browser .filters { gap: 8px; margin-bottom: 10px; flex-wrap: nowrap; }
+.browser .filters select { flex: 1; min-width: 0; min-height: 40px; padding: 6px 10px; font-size: 15px; }
+.grants-card h3, .browser-sec .grants-box h3 { margin: 0 0 6px; font-size: 15px; }
+.browser-sec .grants-box:not(:empty) { margin-top: 18px; }
+.grants-box .rows .row { flex-wrap: nowrap; gap: 8px; }
+.grants-box .mono { overflow-wrap: anywhere; }
+.newprofile h3, .newlogin h3 { margin: 0 0 4px; font-size: 17px; }
+.newprofile .actions, .newlogin .actions { margin-top: 14px; gap: 8px; }
+.browser-yaml .file .row { flex-wrap: nowrap; }
+
+/* site rules: a profile's, an agent's own */
+.sites-ed .site-rule { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.sites-ed .site-rule:first-child { padding-top: 0; }
+.site-line { display: flex; gap: 8px; align-items: center; }
+.site-line input { flex: 1; min-width: 0; }
+.site-line button { flex: none; }
+.kinds { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.kinds label.kind { margin: 0; font-size: 13px; min-width: 0; }
+.kinds label.kind > span { display: block; margin-bottom: 2px; }
+.kinds select { min-height: 38px; padding: 4px 8px; font-size: 15px; }
+select.mode.allow { color: var(--accent); }
+select.mode.ask { color: var(--warn); }
+select.mode.deny { color: var(--bad); }
+select.mode.unset { color: var(--muted); }
+select.mode option { color: var(--ink); }
+.sites-ed .warn-text { margin: 6px 0 0; }
+.sites-ed .add-site { margin-top: 12px; }
+@media (max-width: 560px) { .kinds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* the activity log */
+.audit .what, .audit .target { overflow-wrap: anywhere; }
+.audit .row { flex-wrap: nowrap; align-items: flex-start; }
+img.shot { display: block; max-width: 100%; max-height: 280px; margin-top: 8px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--chip); }
+.audit-box > .card + button { margin-bottom: 10px; }
+
+/* #/browser/<profile> */
+.title-row { margin-top: 2px; }
+.head-acts { margin-bottom: 14px; }
+.tabrow { flex-wrap: nowrap; }
+.tabrow .tabtext .name, .tabrow .tabtext .url { display: block; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; }
+.tabs-card .field.open-tab { margin-top: 14px; }
+.tabs-card .rows + .field.open-tab { margin-top: 16px; }
+.tabs-card .addrow { flex-wrap: nowrap; }
+.tabs-card > .acts { margin-top: 14px; }
+.danger-zone { margin: 28px 0 12px; }
+label.check.wipe { align-items: flex-start; min-height: 0; margin: 10px 0 4px; font-size: 14px; }
+label.check.wipe input { margin-top: 1px; }
+.vault-row { color: inherit; flex-wrap: nowrap; }
+.vault-row .name, .vault-row .desc { display: block; }
+.vault-row .chev { color: var(--muted); font-size: 22px; line-height: 1; }
+.note-in { min-height: 76px; resize: vertical; line-height: 1.45; }
+
+/* Settings › Browser */
+.browser-sec h3 { font-size: 15px; margin: 14px 0 6px; }
+.browser-sec h3.rules-head { margin-top: 20px; margin-bottom: 0; }
+.browser-sec h3.rules-head + .sub { margin: 0 0 10px; }
+.browser-sec .note { margin-top: 12px; }
+.browser-sec .note button { margin-left: 4px; }
+
+/* a browser ask (inbox, session, live view) */
+.browserask .site, .browserask .url { margin-top: 4px; overflow-wrap: anywhere; }
+.browserask .url { font-size: 12px; color: var(--muted); }
+.browserask .typed-box { margin-top: 6px; }
+.browserask pre.typed { max-height: 160px; }
+.browserask .live-link { margin-top: 10px; }
+.browserask .reason { font-weight: 400; }
+
+/* the vault */
+.secret-field > .row { flex-wrap: nowrap; gap: 8px; }
+.secret-field > .row > .row { gap: 8px; flex-wrap: nowrap; }
+.secret-field label { margin: 0; }
+.secret-field input { margin-top: 6px; }
+.secret-state { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.secret-state.set { color: var(--accent); }
+.secret-state.going { color: var(--bad); }
+.note.ok-note { background: var(--accent-soft); }
+.vault-group .section-head { flex-wrap: nowrap; }
+a.small-link { font-size: 14px; white-space: nowrap; }
+.vault-entry h1.mono { font-size: 20px; overflow-wrap: anywhere; }
+
+/* the live view: a layer over the whole page */
+body.lv-open { overflow: hidden; }
+.lv { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; background: var(--bg);
+  padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left); }
+.lv-top, .lv-bar { display: flex; gap: 6px; align-items: center; padding: 6px 8px; background: var(--panel);
+  border-bottom: 1px solid var(--line); }
+.lv-bar { flex-wrap: nowrap; }
+.lv-go { display: flex; gap: 6px; min-width: 0; margin: 0; }
+.lv input { min-height: 38px; padding: 6px 10px; font-size: 16px; }         /* 16px: a phone doesn't zoom in */
+.lv button.small, .lv a.button.small { min-height: 38px; min-width: 38px; padding: 4px 10px; flex: none; }
+.lv-tabs { flex: 1; min-width: 0; width: auto; min-height: 38px; padding: 4px 8px; font-size: 15px; }
+.lv-zoombox { display: flex; align-items: center; gap: 4px; flex: none; }
+.lv-zoom { min-width: 2.4em; text-align: center; font-size: 13px; color: var(--muted); }
+.lv-status { display: flex; gap: 8px; align-items: center; padding: 3px 10px; font-size: 13px; color: var(--muted);
+  min-height: 28px; }
+.lv-status .grow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lv-status.busy { background: var(--warn-soft); color: var(--warn); }
+.lv-status.bad { background: var(--bad-soft); color: var(--bad); }
+.lv-status.bad .grow { white-space: normal; }
+.lv-status.note-line { background: var(--chip); color: var(--ink); }
+.lv-status button.small { min-height: 30px; }
+.lv-asks { flex: none; background: var(--warn-soft); border-bottom: 1px solid var(--warn); }
+.lv-asks:empty { display: none; }
+.lv-asks-bar { flex-wrap: nowrap; gap: 8px; padding: 4px 8px 4px 12px; font-size: 14px; color: var(--warn); }
+.lv-asks-bar .grow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.lv-asks-list { max-height: 45vh; overflow-y: auto; padding: 0 8px; background: var(--bg); }
+.lv-asks .perm { margin: 8px 0; }
+.lv-switch { margin-bottom: 8px; }
+.lv-screen { flex: 1; min-height: 0; position: relative; display: flex; background: var(--chip); overflow: hidden; }
+.lv-screen.zoomed { overflow: auto; -webkit-overflow-scrolling: touch; }
+.lv-canvas { display: block; flex: none; margin: auto; background: #fff; box-shadow: 0 0 0 1px var(--line);
+  outline: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.lv-screen.fit .lv-canvas { touch-action: none; }
+.lv-screen.zoomed .lv-canvas { touch-action: pan-x pan-y; }
+.lv-canvas:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.lv-wait { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; margin: 0;
+  padding: 20px; color: var(--muted); text-align: center; }
+.lv-input { display: flex; flex-direction: column; gap: 6px; padding: 6px 8px; background: var(--panel);
+  border-top: 1px solid var(--line); }
+.lv-type { display: flex; gap: 6px; margin: 0; }
+.lv-keys { display: flex; gap: 4px; }
+.lv-keys button.small.key { flex: 1 1 0; min-width: 0; padding: 4px 2px; }
+@media (min-width: 760px) {
+  .lv-input { flex-direction: row; align-items: center; }
+  .lv-type { flex: 1; }
+  .lv-keys { flex: none; }
+  .lv-keys button.small.key { flex: none; min-width: 40px; padding: 4px 8px; }
+}

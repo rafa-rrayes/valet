@@ -1,0 +1,11 @@
+[
+  {
+    "name": "mac",
+    "connected": true,
+    "last_seen": 1793583093.304492,
+    "version": "0.2.0",
+    "harnesses": [
+      "claude"
+    ]
+  }
+]
