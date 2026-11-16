@@ -1,6 +1,7 @@
 # Generate Valet.xcodeproj with:  cd apps && xcodegen
-# The bundle ID is the new Valet's until the switch-over: setting PRODUCT_BUNDLE_IDENTIFIER to br.com.rrayes.valet
-# below (and the extension's to br.com.rrayes.valet.notify) takes over the old app's ID and its APNs topic.
+# To build under your own Apple account: change DEVELOPMENT_TEAM, bundleIdPrefix and the three
+# PRODUCT_BUNDLE_IDENTIFIERs (app, .notify, .uitests) below, run xcodegen, and set the control plane's
+# VALET_APNS_TOPIC to the app's bundle ID. The Keychain service name in ValetKit/Support/Keychain.swift can stay.
 name: Valet
 options:
   bundleIdPrefix: br.com.rrayes

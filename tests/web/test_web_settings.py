@@ -26,7 +26,7 @@ DEFINITION = AgentDefinition.model_validate({
     "name": "scout", "display_name": "Scout", "emoji": "🔎", "harness": "claude", "model": "claude-opus-5-5",
     "provider": "anthropic", "runner": "mac",
     "computer": {"level": "container", "image": None, "network": "open", "allowlist": ["example.com"],
-                 "mounts": [{"host": "/Users/rafa/notes", "path": "/work/notes", "readonly": True}], "user": "agent"},
+                 "mounts": [{"host": "/Users/alex/notes", "path": "/work/notes", "readonly": True}], "user": "agent"},
     "tools": {"mcp": ["github"], "skills": ["*"]}, "browser": {"profiles": ["work"]},
     "secrets": ["GH_TOKEN", {"vault": "aws/alice", "env": "AWS_KEY"}], "permissions": "ask",
     "directives": ["persona.md", "memory"], "memory": True,
@@ -82,7 +82,7 @@ def test_form_is_built_from_the_definition():
     assert c["display_name"]["value"] == "Scout" and c["emoji"]["value"] == "🔎"
     assert c["persona"]["value"] == PERSONA
     assert c["model"]["value"] == "claude-opus-5-5" and "model-other" not in c
-    assert c["computer.mounts.0.host"]["value"] == "/Users/rafa/notes"
+    assert c["computer.mounts.0.host"]["value"] == "/Users/alex/notes"
     assert c["computer.mounts.0.path"]["value"] == "/work/notes"
     assert c["computer.mounts.0.readonly"]["checked"] is True
     assert c["computer.image"]["value"] == ""
@@ -184,7 +184,7 @@ def test_no_computer():
     none = next(l for l in catalog.LEVELS if l["id"] == "none")
     assert none["name"] in r["text"] and none["summary"] in r["text"]
     back = settings([{"click": "level:none"}, {"click": "level:container"}])
-    assert back["controls"]["computer.mounts.0.host"]["value"] == "/Users/rafa/notes"
+    assert back["controls"]["computer.mounts.0.host"]["value"] == "/Users/alex/notes"
     assert "Unsaved changes" not in back["text"]
 
 
@@ -510,12 +510,12 @@ def test_delete_a_container_agent_with_its_volumes():
 
 def test_delete_a_host_agent_keeps_its_folder_and_shows_a_refusal():
     host = copy.deepcopy(DEFINITION)
-    host["computer"] = {**host["computer"], "level": "host", "workdir": "/Users/rafa/code", "mounts": []}
+    host["computer"] = {**host["computer"], "level": "host", "workdir": "/Users/alex/code", "mounts": []}
     refused = {"status": 503, "body": {"detail": "runner mac is not connected: it has to be, to stop scout and "
                                                  "remove its files there"}}
     r = deleting([{"input": "display_name", "value": "Edited"}, {"button": "Delete agent…"}, {"button": "Delete"}],
                  d=detail(host), delete=refused)
-    assert "Its working folder on mac stays: /Users/rafa/code is yours, and Valet never deletes it." in r["seen"]
+    assert "Its working folder on mac stays: /Users/alex/code is yours, and Valet never deletes it." in r["seen"]
     assert "delete-volumes" not in r["controls"]
     assert deletes(r) == ["/api/agents/scout"] and r["hash"] == SETTINGS
     assert "runner mac is not connected" in r["seen"]

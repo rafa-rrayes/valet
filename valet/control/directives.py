@@ -88,7 +88,7 @@ def _computer(d: AgentDefinition) -> list[str]:
 
 
 def _permission(d: AgentDefinition) -> list[str]:
-    """What the level means in practice in this harness, on this computer (README, "Permission levels")."""
+    """What the level means in practice in this harness, on this computer (docs/GUIDE.md, "Permission levels")."""
     level, harness, host = d.permissions, d.harness, d.computer.level == "host"
     if d.computer.level == "none":
         return ["With no computer, your level only decides Valet's tools (below): you have no others, apart from "

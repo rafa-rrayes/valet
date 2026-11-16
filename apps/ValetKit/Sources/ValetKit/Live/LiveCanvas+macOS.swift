@@ -4,7 +4,7 @@ import SwiftUI
 
 /// The live view's picture and input on the Mac: clicks, double clicks and drags, the trackpad or wheel, and the
 /// keyboard while the picture has focus (typed characters go to the page, arrows, return and delete as keys, ⌘V
-/// pastes as text). (The old app's canvas, on mouse down / move / up.)
+/// pastes as text).
 struct LiveCanvas: NSViewRepresentable {
     let session: LiveSession
 

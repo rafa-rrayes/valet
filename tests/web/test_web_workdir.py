@@ -18,9 +18,9 @@ def test_only_this_machine_has_a_working_folder():
 
 
 def test_it_shows_and_saves_the_folder():
-    d = host(workdir="/Users/rafa/Code/valet")
+    d = host(workdir="/Users/alex/Code/valet")
     r = settings(d=detail(d))
-    assert r["controls"]["computer.workdir"]["value"] == "/Users/rafa/Code/valet"
+    assert r["controls"]["computer.workdir"]["value"] == "/Users/alex/Code/valet"
     edited = host(workdir="/srv/project")
     r = settings([{"input": "computer.workdir", "value": " /srv/project "}, {"button": "Save"}], d=detail(d),
                  put={"status": 200, "body": detail(edited)})
@@ -32,7 +32,7 @@ def test_it_shows_and_saves_the_folder():
 
 
 def test_its_error_shows_under_it():
-    msg = "an absolute path on the runner's machine, like /Users/rafa/Code/project"
+    msg = "an absolute path on the runner's machine, like /Users/alex/Code/project"
     r = settings([{"input": "computer.workdir", "value": "Code/valet"}, {"button": "Save"}], d=detail(host()),
                  put={"status": 422, "body": {"detail": "invalid", "errors": [{"field": "computer.workdir", "msg": msg}]}})
     assert r["errors"]["computer.workdir"] == msg

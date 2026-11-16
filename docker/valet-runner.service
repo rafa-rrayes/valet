@@ -1,12 +1,12 @@
 # The runner on the Docker host, as a systemd service; the control plane runs in Docker beside it (docker/compose.yml).
-# "rafa" below is an example: use your own user and home. It runs as that user from a checkout of this repo, so `host` agents work in rafa's folders as rafa, and container agents
-# go through rafa's access to Docker (the docker group).
+# "youruser" below is an example: use your own user and home. It runs as that user from a checkout of this repo, so `host` agents work in youruser's folders as youruser, and container agents
+# go through youruser's access to Docker (the docker group).
 #
 #   sudo cp docker/valet-runner.service /etc/systemd/system/
 #   sudo systemctl daemon-reload && sudo systemctl enable --now valet-runner
 #   journalctl -u valet-runner -f
 #
-# Settings and tokens: /home/rafa/.config/valet/runner.env (docker/runner.env.example), mode 0600. PATH must
+# Settings and tokens: /home/youruser/.config/valet/runner.env (docker/runner.env.example), mode 0600. PATH must
 # reach node and claude-agent-acp (host-level Claude agents run it directly): adjust it to where npm puts globals.
 [Unit]
 Description=Valet runner (runs the agents for the control plane)
@@ -15,12 +15,12 @@ After=network-online.target docker.service
 
 [Service]
 Type=simple
-User=rafa
-Group=rafa
-WorkingDirectory=/home/rafa/valet
-EnvironmentFile=/home/rafa/.config/valet/runner.env
-Environment=PATH=/home/rafa/.local/bin:/home/rafa/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
-ExecStart=/home/rafa/.local/bin/uv run --frozen --no-dev valet-runner
+User=youruser
+Group=youruser
+WorkingDirectory=/home/youruser/valet
+EnvironmentFile=/home/youruser/.config/valet/runner.env
+Environment=PATH=/home/youruser/.local/bin:/home/youruser/.npm-global/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/youruser/.local/bin/uv run --frozen --no-dev valet-runner
 Restart=always
 RestartSec=5
 TimeoutStopSec=30

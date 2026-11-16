@@ -24,7 +24,7 @@ Swift 6 with strict concurrency.
 | `UITests/` | The end-to-end UI test against a real control plane (below). |
 | `Shared/` | The asset catalog (icon, accent color). |
 
-Bundle ID `br.com.rrayes.valet` for both apps (one APNs topic), team `N7Z47ZX3FQ`, display name "Valet" (the
+Bundle ID `br.com.rrayes.valet` for both apps (one APNs topic) and team `N7Z47ZX3FQ` are the author's: to build under your own account, change them in `project.yml` (see its header), run `xcodegen`, and set `VALET_APNS_TOPIC` to your bundle ID. Display name "Valet" (the
 notification extension is `.notify`, the UI tests `.uitests`).
 
 ## Building
@@ -214,7 +214,7 @@ Against the web UI and the server:
 After sign-in the app asks to notify, registers with APNs and sends its token to `POST /api/devices` (a server
 without that route is fine: Settings says push isn't available). The control plane sends a push for every new
 inbox item once it has an APNs key: see `VALET_APNS_KEY_FILE`, `VALET_APNS_KEY_ID`, `VALET_APNS_TEAM_ID`,
-`VALET_APNS_TOPIC` (this bundle ID) and `VALET_APNS_SANDBOX=1` for development builds, in the main README.
+`VALET_APNS_TOPIC` (this bundle ID) and `VALET_APNS_SANDBOX=1` for development builds, in docs/GUIDE.md.
 
 A push has category `VALET_INBOX` and `item_id`, `agent` and `kind` beside `aps`. Its buttons are Allow once,
 Allow for an hour and Reject; each is mapped onto what the item really offers when it's pressed (an hour that

@@ -1,4 +1,4 @@
-# The control plane, as a compose app (made for Dokploy's raw compose, fine with plain `docker compose`). The image
+# The control plane, as a compose app (plain `docker compose`; also works as Dokploy's raw compose). The image
 # is built on the Docker host from this repo:
 #
 #   docker build -f docker/control/Dockerfile -t valet/control:latest .
@@ -15,7 +15,7 @@ services:
     shm_size: 1gb                   # Chrome
     mem_limit: 4g
     environment:
-      # The address the apps and the browser use (a Cloudflare tunnel's, say): https makes the session cookie Secure,
+      # The address the apps and the browser use (a tunnel's or reverse proxy's, say): https makes the session cookie Secure,
       # and browser requests from any other origin are refused.
       - VALET_PUBLIC_URL=${VALET_PUBLIC_URL}
       - VALET_TRUST_CF_IP=${VALET_TRUST_CF_IP:-1}
@@ -28,26 +28,21 @@ services:
       # network proxies) and from host agents alike. 172.17.0.1 is docker0's default; check `ip -4 addr show docker0`.
       - VALET_GATEWAY_URL=${VALET_GATEWAY_URL:-http://172.17.0.1:8780}
       # The zone schedules and wake-ups run in (VALET_TZ, else this; the image carries tzdata).
-      - TZ=${TZ:-America/Sao_Paulo}
+      - TZ=${TZ:-UTC}
       # Push to the apps: on once /data/apns.p8 exists and the key ID is set. The topic is the apps' bundle ID:
-      # br.com.rrayes.valet (apps/project.yml). SANDBOX=1 while the apps are development builds.
+      # in apps/project.yml (change it there if you build the apps under your own account). SANDBOX=1 while the
+      # apps are development builds. Team ID: the Apple developer team that owns the APNs key.
       - VALET_APNS_KEY_FILE=/data/apns.p8
       - VALET_APNS_KEY_ID=${VALET_APNS_KEY_ID:-}
-      - VALET_APNS_TEAM_ID=N7Z47ZX3FQ
-      - VALET_APNS_TOPIC=${VALET_APNS_TOPIC:-br.com.rrayes.valet}
+      - VALET_APNS_TEAM_ID=${VALET_APNS_TEAM_ID:-}
+      - VALET_APNS_TOPIC=${VALET_APNS_TOPIC:-}
       - VALET_APNS_SANDBOX=${VALET_APNS_SANDBOX:-1}
     volumes:
       - valet-data:/data            # database, definitions repo, Chrome profiles, shared files
     ports:
       - "127.0.0.1:8780:8780"                       # the runner on the host, and the tunnel
       - "${VALET_BRIDGE_IP:-172.17.0.1}:8780:8780"  # agents (VALET_GATEWAY_URL); not reachable from outside the box
-    networks:
-      - dokploy-network
 
 volumes:
   valet-data:
     external: true                  # docker volume create valet-data
-
-networks:
-  dokploy-network:
-    external: true

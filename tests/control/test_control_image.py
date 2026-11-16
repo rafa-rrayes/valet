@@ -37,7 +37,7 @@ def test_the_image_runs_headed_chrome_as_a_user():
     assert {"data", ".venv", ".git"} <= set(ignored)
 
 
-def test_compose_for_dokploy():
+def test_compose_file():
     c = yaml.safe_load((DOCKER / "compose.yml").read_text())
     svc = c["services"]["valet-control"]
     assert svc["image"] == "valet/control:latest" and svc["pull_policy"] == "never"
@@ -52,7 +52,7 @@ def test_compose_for_dokploy():
 
 def test_runner_unit():
     unit = (DOCKER / "valet-runner.service").read_text()
-    assert "EnvironmentFile=/home/rafa/.config/valet/runner.env" in unit and "valet-runner" in unit
+    assert "EnvironmentFile=/home/youruser/.config/valet/runner.env" in unit and "valet-runner" in unit
     assert "Restart=always" in unit and "WantedBy=multi-user.target" in unit
     example = dict(line.split("=", 1) for line in (DOCKER / "runner.env.example").read_text().splitlines()
                    if line and not line.startswith("#"))
