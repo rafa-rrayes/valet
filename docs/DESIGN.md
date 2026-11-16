@@ -228,7 +228,7 @@ agent's token. The gateway:
 
 Because this sits outside the harness, it works identically on Claude, Codex or anything else.
 
-As built (M2, first slice; README "Giving an agent tools"):
+As built (M2, first slice; GUIDE.md "Giving an agent tools"):
 
 - External servers are registered in `mcp.yaml` at the definitions repo's root; `tools.mcp` names the ones an agent
   gets. Tools are namespaced `<server>__<tool>` (dots become `_`, so `valet.agents` → `valet_agents__…`).
@@ -258,7 +258,7 @@ Valet's own servers:
 - `valet.owner`: message the owner, ask a question (becomes an inbox item with push), schedule its own wake-ups. As
   built (M4): `message`, `ask`, `schedule_wakeup`, `wakeups`, `cancel_wakeup`, allowed at every level; push is M3's
 
-As built (M3, the browser and the vault; README "Giving an agent the browser"):
+As built (M3, the browser and the vault; GUIDE.md "Giving an agent the browser"):
 
 - Profiles and their site rules are `browser.yaml` at the repo's root; an agent's `browser.profiles` picks them and
   its `browser.rules` beat theirs. The decision (`control/browser/policy.py`) is pure: the agent's most specific
@@ -279,7 +279,7 @@ As built (M3, the browser and the vault; README "Giving an agent the browser"):
   associated data (`vault:<name>`). `login()` fills it into the page; `- vault: <entry>` in `secrets` gives the
   password as an env var. Page text is masked with every vault secret and password-field value.
 
-As built (M4): `valet.memory` and `valet.shared` (README "Memory", "The shared space"):
+As built (M4): `valet.memory` and `valet.shared` (GUIDE.md "Memory", "The shared space"):
 
 - Which servers an agent reaches through the gateway is one answer, `AgentDefinition.gateway_servers()`: those
   `tools.mcp` lists, each once, then `valet.memory` when the definition says `memory: true` (`tools.mcp` can't list
@@ -388,7 +388,7 @@ Passwords never enter the context: the vault and `login()` stay as they are.
   marked *Interrupted* and waits for you to retry (no silent replays of side effects).
 - **Status** per agent: idle, working, waiting on you, stopped, failed, with the current turn's activity live.
 
-As built (M4, triggers; README "Always-on", API.md "Triggers" and "The prompt queue"):
+As built (M4, triggers; GUIDE.md "Always-on", API.md "Triggers" and "The prompt queue"):
 
 - **One delivery path** (`control/prompts.py`) for every prompt: yours, schedules, webhooks, other agents, your
   answers, wake-ups. A prompt starts a turn if its session is idle with nothing waiting, else joins that session's

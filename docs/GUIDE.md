@@ -1,4 +1,4 @@
-# Valet
+# Valet: user guide
 
 A control plane for always-on AI agents. Agents run on any harness that speaks the
 [Agent Client Protocol](https://agentclientprotocol.com) (Claude Code and
@@ -7,18 +7,18 @@ machine you choose. You set an agent up from a form, decide how much it may do w
 web UI or the iOS and macOS apps: watch the reply stream in, approve or reject its permission requests from your
 phone, give it tools, a browser, memory, schedules and webhooks.
 
-Documentation: [docs/DESIGN.md](docs/DESIGN.md) (the design and how it's built), [docs/API.md](docs/API.md) (the
-REST API and client socket), [docs/PROTOCOL.md](docs/PROTOCOL.md) (control plane to runner) and
-[apps/README.md](apps/README.md) (the native apps).
+Documentation: [docs/DESIGN.md](DESIGN.md) (the design and how it's built), [docs/API.md](API.md) (the
+REST API and client socket), [docs/PROTOCOL.md](PROTOCOL.md) (control plane to runner) and
+[apps/README.md](../apps/README.md) (the native apps).
 
 ## The pieces
 
 - **Control plane** (`valet-control`, `valet/control/`): FastAPI and SQLite. It holds the owner's password,
   the agent definitions (a git repo), the event store, the inbox and the vault, and runs the MCP gateway and the
-  browser profiles' Chrome. It serves the REST API and the client WebSocket ([docs/API.md](docs/API.md)) and the
+  browser profiles' Chrome. It serves the REST API and the client WebSocket ([docs/API.md](API.md)) and the
   web UI. It never runs agents.
 - **Runner** (`valet-runner`, `valet/runner/`): runs on the machine that hosts the agents. It dials out to the
-  control plane over a WebSocket ([docs/PROTOCOL.md](docs/PROTOCOL.md)), starts each agent's harness and speaks
+  control plane over a WebSocket ([docs/PROTOCOL.md](PROTOCOL.md)), starts each agent's harness and speaks
   ACP to it over stdio. A `container` agent is `docker run -i --rm` of its image. Its `/home/agent` and `/work`
   are named volumes that outlive the container. A `host` agent is a plain subprocess on the runner's machine.
   Each harness has a small adapter (`valet/runner/harness/`) that compiles the definition into its command, env
@@ -27,7 +27,7 @@ REST API and client socket), [docs/PROTOCOL.md](docs/PROTOCOL.md) (control plane
   JS with no build step.
 - **Native apps** (`apps/`): Valet for iOS and macOS, in SwiftUI, on the same API and socket as the web UI: the
   agents, live sessions, the inbox with push notifications you can answer from, Face ID, the agent's terminal and
-  files, attachments. How to build them and point them at a control plane: [apps/README.md](apps/README.md).
+  files, attachments. How to build them and point them at a control plane: [apps/README.md](../apps/README.md).
 - **Agent image** (`docker/agent-base/`): Node 24, Claude Code and its ACP adapter
   `@agentclientprotocol/claude-agent-acp@0.99.1`, and DeepSeek Harness `@deepseek-ai/dsh@0.2.1-rc.5`. The runner
   also runs each restricted agent's network proxy from it ([below](#its-computer-and-the-internet)).
@@ -86,7 +86,7 @@ login rate limit counts per client (`cf-connecting-ip`, honored only from loopba
 | `VALET_CHROME_NO_SANDBOX` | only as root | `1`: Chrome without its own sandbox (needed in a container as a non-root user, where Docker blocks the user namespaces it uses: the container is the boundary); `0`: never |
 | `VALET_MAX_FILE_MB` | `100` | the largest file the shared space takes, in MiB (uploads over it are refused as they arrive) |
 | `VALET_TZ` | the machine's | the time zone schedules run in, e.g. `America/Sao_Paulo` ([Always-on](#always-on)) |
-| `VALET_OWNER_NAME` | `the owner` | what Valet's texts call you: the directive presets, tool descriptions, notifications ("Waits for the owner's approval" becomes "Waits for Rafa's approval" with `Rafa`). The authority presets are stored with `{owner}`/`{Owner}` in them and rendered at each agent start |
+| `VALET_OWNER_NAME` | `the owner` | what Valet's texts call you: the directive presets, tool descriptions, notifications ("Waits for the owner's approval" becomes "Waits for Sam's approval" with `Sam`). The authority presets are stored with `{owner}`/`{Owner}` in them and rendered at each agent start |
 | `VALET_TRIGGER_GRACE` | `600` | seconds a due schedule or wake-up waits for an agent that can't take it yet, before it's missed |
 | `VALET_CONTROL_URL` | `ws://127.0.0.1:8780/ws/runner` | runner: where to dial |
 | `VALET_RUNNER_TOKEN` | (required) | runner: from `valet-control add-runner` |
@@ -380,7 +380,7 @@ secrets: [GITHUB_TOKEN]
 Inside the agent, `$GITHUB_TOKEN` is set. If a listed secret isn't set, the start is refused with a message naming
 it. Change a secret's value and the agents running with it show "restart to apply". Names are env var names
 (`GITHUB_TOKEN`), and can't be ones Valet or the harnesses set (`HOME`, `PATH`, `ANTHROPIC_*`, `CLAUDE_*`,
-`DEEPSEEK_*`, `DSH_*`, `VALET_*`, `DOCKER_*`...; the full rule is in [docs/API.md](docs/API.md#secrets)): the
+`DEEPSEEK_*`, `DSH_*`, `VALET_*`, `DOCKER_*`...; the full rule is in [docs/API.md](API.md#secrets)): the
 harness's own key stays in the runner's environment.
 
 A password saved in the [vault](#the-vault) can be given the same way, by its entry's name: `- vault: aws/alice`
@@ -518,7 +518,7 @@ profile**, which asks whether to also wipe its logins (cookies and sessions: eve
 they stay on disk, and a new profile of the same name gets them back).
 
 **1. Define the profiles**: **New profile** in the Browser tab, or in `browser.yaml` at the root of the
-definitions repo (`PUT /api/browser/yaml`, the profile routes in [docs/API.md](docs/API.md#the-browser), or edit it
+definitions repo (`PUT /api/browser/yaml`, the profile routes in [docs/API.md](API.md#the-browser), or edit it
 there and commit):
 
 ```yaml
@@ -629,7 +629,7 @@ Under it, `/ws/browser/<profile>` (owner auth, Valet's own origin) streams a tab
 and clicks, scrolling, typed text, special keys, an address to open, back, reload, and which tab to show or a new
 one. Opening it starts the profile's Chrome. Your input waits for an agent's action in progress (and is dropped,
 saying so, after 5 seconds), so it never lands in the middle of one; a browser being watched isn't stopped for
-idling. The protocol is in [docs/API.md](docs/API.md#the-live-view); `GET /api/browser/running` lists the running
+idling. The protocol is in [docs/API.md](API.md#the-live-view); `GET /api/browser/running` lists the running
 browsers, and `POST /api/browser/profiles/<name>/stop` stops one.
 
 **Headless or not**: Chrome runs headless unless there's a `DISPLAY` (on a Linux server, Xvfb), or
@@ -670,7 +670,7 @@ kinds:
   the same name as a shared skill is used instead of it. Copying an agent copies its own skills.
 
 Make and edit them in the web UI (**Skills** from the agents list for the library; an agent's **Settings › Skills**
-to switch shared ones on and add its own), through the API ([docs/API.md](docs/API.md#skills)), or as files in
+to switch shared ones on and add its own), through the API ([docs/API.md](API.md#skills)), or as files in
 the repo. Every change through Valet is a commit. Names are
 lowercase letters and digits with single dashes (`code-review`, at most 64 characters) and match the directory;
 the description is required (at most 1024 characters); files are UTF-8 text, at most 50 files, 256 KiB each and
@@ -700,7 +700,7 @@ works, an index of the files (name, title, size, date), and the files themselves
 
 Turn it on in **Settings › Memory**: the switch sets both `memory` and the layer. The same section lists the files;
 open one to read it (as Markdown), edit it, delete it, or look through its history and put an older version back
-(through the API: [docs/API.md](docs/API.md#memory)). Your changes are commits too (`Memory: owner wrote scout's
+(through the API: [docs/API.md](API.md#memory)). Your changes are commits too (`Memory: owner wrote scout's
 notes.md`), and memory commits stay out of the agent's settings History. File names are lowercase letters and
 digits with single dashes (`project-notes`, at most 64); a file holds at most 64 KiB, an agent at most 200 files
 and 1 MiB. Copying an agent doesn't copy its memory.
@@ -737,7 +737,7 @@ log. An agent with no computer has no shell, so its files travel inline only.
 **Start** the agent (**Create & start** does both), open **New session**, and talk to it. When the agent asks for
 permission, the request shows up inline in the session and in the **Inbox**, with Allow and Reject (and, for a
 tool through the gateway, Allow for an hour and Always allow). Pending requests survive a page reload and a
-control-plane restart. The iOS and macOS apps ([apps/README.md](apps/README.md)) do the same, and get
+control-plane restart. The iOS and macOS apps ([apps/README.md](../apps/README.md)) do the same, and get
 each new inbox item as a push with its answers as notification buttons.
 
 ### Notifications

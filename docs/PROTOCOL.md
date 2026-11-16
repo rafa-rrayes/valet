@@ -169,7 +169,7 @@ MCP call that's silent for 5 minutes otherwise). Without that capability (or wit
 A container agent on the open internet also gets `--add-host host.docker.internal:host-gateway`, so a gateway URL
 of `http://host.docker.internal:<port>` reaches the control plane's host on Docker Desktop and on Linux. Under a
 restricted network (`gateway`, `allowlist`, and `none`, which means `gateway`) the agent's own proxy gets that
-host entry instead and lets the gateway URL's host and port through (README, Its computer and the internet).
+host entry instead and lets the gateway URL's host and port through (GUIDE.md, Its computer and the internet).
 Nothing in `agent.start` changes: the runner reads the policy from the definition.
 
 The gateway decides each call itself (allow / ask / deny from the agent's permission level), so the harness
