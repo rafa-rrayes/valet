@@ -9,10 +9,10 @@ import pytest
 from tests.claude_transcripts import Chain, simple
 from valet.shared import transcripts as t
 
-CWD = "/Users/rafa/Code/project"
+CWD = "/Users/alex/Code/project"
 
 
-@pytest.mark.parametrize("cwd, folder", [("/Users/rafa/Code/valet", "-Users-rafa-Code-valet"),
+@pytest.mark.parametrize("cwd, folder", [("/Users/alex/Code/valet", "-Users-alex-Code-valet"),
                                          ("/srv/my project/v1.2_x", "-srv-my-project-v1-2-x"),
                                          ("/home/né", "-home-n-"), ("/a/😀", "-a---")])
 def test_folder_names(cwd, folder):
@@ -29,7 +29,7 @@ console.log(JSON.stringify(JSON.parse(require("fs").readFileSync(0, "utf8")).map
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="node isn't installed")
 def test_long_folder_names_match_the_sdk():
-    paths = ["/x" * 150, "/Users/rafa/" + "deep/" * 50 + "né😀", "/" + "a" * 199, "/" + "a" * 200, "/" + "é" * 300]
+    paths = ["/x" * 150, "/Users/alex/" + "deep/" * 50 + "né😀", "/" + "a" * 199, "/" + "a" * 200, "/" + "é" * 300]
     out = subprocess.run(["node", "-e", SDK], input=json.dumps(paths), capture_output=True, text=True, check=True)
     assert [t.folder_name(p) for p in paths] == json.loads(out.stdout)
     assert len(t.folder_name("/x" * 150)) > t.FOLDER_MAX

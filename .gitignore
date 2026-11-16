@@ -12,3 +12,12 @@ tasks/
 .env.*
 *.p8
 .ruff_cache/
+.mypy_cache/
+.build/
+.swiftpm/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+.idea/
+.vscode/
+*.egg-info/

@@ -2,7 +2,7 @@
 wake-ups agents set for themselves (valet.owner), plus the record of every trigger run (table trigger_runs, which
 webhooks write too, through fire()).
 
-The rules (README, "Always-on"):
+The rules (docs/GUIDE.md, "Always-on"):
 - A trigger fires only for an agent whose desired state is running. A run that comes due while the agent can't take
   a prompt (starting, failed, its runner offline) waits for it, up to the grace window (VALET_TRIGGER_GRACE, 10
   minutes); after that it's recorded as missed, with the reason. A stopped agent's runs are recorded as skipped.

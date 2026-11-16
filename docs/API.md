@@ -192,7 +192,7 @@ InboxItem = {"id": str, "kind": "permission"|"tool"|"browser"|"message"|"questio
   options otherwise. kind "browser": valet.browser asks before an action, or asks the owner to take over a tab
   (The browser, below); session_id and turn_id as for "tool"; tool_call is {"toolCallId": "browser-<id>", "title",
   "kind": "other", "rawInput": <BrowserAsk.detail>}; title "<host>: <summary>"; its options are BrowserAsk's.
-  kinds "message" and "question": valet.owner's (README, "Always-on"); session_id is the asking session when it had
+  kinds "message" and "question": valet.owner's (GUIDE.md, "Always-on"); session_id is the asking session when it had
   exactly one turn running. A message's options are [{"optionId": "dismiss", "name": "Dismiss", "kind":
   "reject_once"}]; a question's are its choices, {"optionId": "option-1", "name": ..., "kind": "allow_once"} on,
   then dismiss. They wait on no call: they don't expire
@@ -388,7 +388,7 @@ SharedItem = {"id": int, "kind": "note"|"file",
      no longer has it); a copy keeps the original's.
   4. The result is validated (422 `{detail, errors}`, also when an authority preset it lists doesn't exist) and
      written with `to_yaml`, as in [Saving settings](#saving-settings).
-- **Default**: none of them. agent.yaml is the plain template shown in the README (`directives: [persona.md]`);
+- **Default**: none of them. agent.yaml is the plain template shown in the guide (GUIDE.md) (`directives: [persona.md]`);
   persona.md as for Raw.
 
 ### Deleting an agent
@@ -441,7 +441,7 @@ as it is. It also repairs an agent whose agent.yaml doesn't validate (`AgentDeta
 ## What agents are told: the owner profile and authority presets
 
 The texts agents share, at the definitions repo's root; each write is a commit. Agents list them in `directives`
-(see the README's "What agents are told"). A write emits an `agent` frame for each agent that lists the text, so a
+(see the guide (GUIDE.md)'s "What agents are told"). A write emits an `agent` frame for each agent that lists the text, so a
 running one shows `restart_needed`.
 
 | method | path | body | response |
@@ -688,7 +688,7 @@ main session if it asked outside a turn; queued there if it's working, and waiti
 
 ## Triggers
 
-What wakes an agent besides its owner (README, "Always-on"): schedules and webhooks in its `agent.yaml`
+What wakes an agent besides its owner (GUIDE.md, "Always-on"): schedules and webhooks in its `agent.yaml`
 (`triggers`), the wake-ups it sets itself (valet.owner), and the record of each run. Schedules run in
 `VALET_TZ` (else the machine's zone), delivered within `VALET_TRIGGER_GRACE`.
 
@@ -747,11 +747,11 @@ it is, binary data only named; at most 20,000 characters of it. The address coun
 | GET | `/api/gateway/grants?agent=` | | `[ToolGrant]`: the live ones (expired ones are dropped), soonest to expire first; `agent` narrows to one |
 | DELETE | `/api/gateway/grants/{id}` | | `{"ok": true}`; 404 no such grant (it may have expired). From the next call, the tool is decided without it |
 
-An agent's rules are `tools.rules` in its definition (README, "MCP tools"): server -> tool name or `"*"` -> `allow`,
+An agent's rules are `tools.rules` in its definition (GUIDE.md, "MCP tools"): server -> tool name or `"*"` -> `allow`,
 `ask` or `deny`, saved like any other field (`PUT /api/agents/{name}/definition`, or the file). They apply at the
 next call and are left out of `restart_needed`.
 
-mcp.yaml (README, "MCP tools") names the servers; its url, header and env values may reference `${secret:NAME}`,
+mcp.yaml (GUIDE.md, "MCP tools") names the servers; its url, header and env values may reference `${secret:NAME}`,
 one of Valet's secrets (Secrets, above; a name the secret rule allows), or `${env:NAME}`, a variable of the control
 plane's own environment. They're resolved when the gateway connects to the server (a secret decrypted then, a
 changed one reconnecting at the next use) and never leave the control plane: the routes here show header and env
@@ -842,7 +842,7 @@ file's bytes.
 
 ## The browser
 
-Real Chrome per profile, run by the control plane (README, "Giving an agent the browser"). Profiles and their site
+Real Chrome per profile, run by the control plane (GUIDE.md, "Giving an agent the browser"). Profiles and their site
 rules are `browser.yaml` at the definitions repo's root; every write is a commit. Agents use the browser through
 `valet.browser`, one of the gateway's own servers.
 

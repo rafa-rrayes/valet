@@ -21,8 +21,8 @@ def computer(**kw) -> AgentDefinition:
     return AgentDefinition.model_validate({"name": "scout", "computer": {"level": "host", **kw}})
 
 
-@pytest.mark.parametrize("given, kept", [("/Users/rafa/Code/valet", "/Users/rafa/Code/valet"),
-                                         ("/Users/rafa/Code/valet/", "/Users/rafa/Code/valet"),
+@pytest.mark.parametrize("given, kept", [("/Users/alex/Code/valet", "/Users/alex/Code/valet"),
+                                         ("/Users/alex/Code/valet/", "/Users/alex/Code/valet"),
                                          ("//srv///work//", "/srv/work"), ("/", "/"),
                                          ("/My Projects/né", "/My Projects/né"), ("", None), (None, None)])
 def test_a_workdir_is_an_absolute_path(given, kept):
@@ -59,17 +59,17 @@ def test_the_launch_runs_there():
     c = Compiled(argv=["claude-agent-acp"])
     default = plan(computer(), c, cfg)
     assert default.cwd == default.session_cwd == "/srv/runner/agents/scout/work" == host_workdir(computer(), cfg)
-    own = plan(computer(workdir="/Users/rafa/Code/valet"), c, cfg)
-    assert own.cwd == own.session_cwd == "/Users/rafa/Code/valet"
+    own = plan(computer(workdir="/Users/alex/Code/valet"), c, cfg)
+    assert own.cwd == own.session_cwd == "/Users/alex/Code/valet"
     # Anywhere but the host it's ignored: the workspace is /work.
     boxed = AgentDefinition.model_validate({"name": "scout", "computer": {"level": "container",
-                                                                          "workdir": "/Users/rafa/Code/valet"}})
-    assert plan(boxed, c, cfg).session_cwd == "/work" and "/Users/rafa/Code/valet" not in plan(boxed, c, cfg).args
+                                                                          "workdir": "/Users/alex/Code/valet"}})
+    assert plan(boxed, c, cfg).session_cwd == "/work" and "/Users/alex/Code/valet" not in plan(boxed, c, cfg).args
 
 
 def test_the_environment_layer_names_it():
-    text = directives.environment_text(computer(workdir="/Users/rafa/Code/valet"))
-    assert "Your working directory is /Users/rafa/Code/valet." in text
+    text = directives.environment_text(computer(workdir="/Users/alex/Code/valet"))
+    assert "Your working directory is /Users/alex/Code/valet." in text
     assert "Your working directory is" not in directives.environment_text(computer())
 
 

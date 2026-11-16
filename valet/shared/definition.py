@@ -127,7 +127,7 @@ class Computer(_Model):
         if not v:
             return None
         if not v.startswith("/") or len(v) > WORKDIR_MAX:
-            raise ValueError("an absolute path on the runner's machine, like /Users/rafa/Code/project")
+            raise ValueError("an absolute path on the runner's machine, like /Users/alex/Code/project")
         if any(ord(ch) < 32 or ord(ch) == 127 for ch in v):
             raise ValueError("a path without control characters")
         parts = [p for p in v.split("/") if p]
@@ -267,7 +267,7 @@ TRIGGER_PROMPT_LIMIT = 8000        # characters of a trigger's own prompt (a web
 
 
 class Trigger(_Model):
-    """What wakes the agent with a prompt (README, "Always-on"): a schedule, or a webhook Valet serves at
+    """What wakes the agent with a prompt (docs/GUIDE.md, "Always-on"): a schedule, or a webhook Valet serves at
     POST /hooks/<agent>/<webhook>. Either prompts the agent's main session (one per agent, made on first use), or a
     new session each time."""
     schedule: str | None = None     # a cron expression (shared/cron.py), in the control plane's zone (VALET_TZ)

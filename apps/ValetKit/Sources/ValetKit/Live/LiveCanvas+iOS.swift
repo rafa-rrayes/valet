@@ -4,7 +4,7 @@ import UIKit
 
 /// The live view's picture and touch input on iOS: a tap is a click, a one-finger drag scrolls the page (with
 /// momentum), a long press then a drag is a mouse drag (sliders, selecting text), pinch and two fingers zoom and pan
-/// the picture here without touching the page. (The old app's canvas, with the drag added.)
+/// the picture here without touching the page.
 struct LiveCanvas: UIViewRepresentable {
     let session: LiveSession
 

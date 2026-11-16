@@ -1,7 +1,7 @@
 import SwiftUI
 
 // Agent text is Markdown and untrusted (docs/API.md, "Rendering events"): it's parsed into blocks and inline runs,
-// never HTML, and only http(s) links stay links. Ported from the old apps' MarkdownView.
+// never HTML, and only http(s) links stay links.
 
 /// The block structure of an agent's Markdown: enough for headings, lists, code, quotes and tables. Inline styling
 /// (bold, italics, code spans, links) is left to `AttributedString(markdown:)`.

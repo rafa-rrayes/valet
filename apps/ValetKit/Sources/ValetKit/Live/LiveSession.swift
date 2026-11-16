@@ -130,7 +130,7 @@ public enum LiveMessage: Equatable, Sendable {
 /// One live view: JPEG frames in, the owner's input out. Frames bypass SwiftUI: the canvas registers `onFrame` and
 /// puts each decoded image on a layer. Decoding runs off the main thread and only the newest frame is kept, so a
 /// slow device drops frames rather than lagging. A dropped connection redials (0.5 s, doubling to 8 s, six times)
-/// on the tab it was showing. (The old app's LiveSession, on the new server's messages.)
+/// on the tab it was showing.
 @MainActor @Observable
 public final class LiveSession {
     public enum State: Equatable, Sendable {
